@@ -1,0 +1,39 @@
+# handler for adapter panpolicyenforcer 
+apiVersion: "config.istio.io/v1alpha2"
+kind: handler 
+metadata:
+ name: h1
+ namespace: istio-system
+spec:
+ adapter: panpolicyenforcer
+ connection:
+   address: "[::]:44845" #replaces at runtime by the test
+ params:
+   file_path: "out.txt"
+   valid_protocols: ["http", "https", "gRPC"]
+---
+# Configuration for policyenforcer instances
+apiVersion: "config.istio.io/v1alpha2"
+kind: authorization 
+metadata:
+  name: vvnewenforcer
+  namespace: istio-system
+spec:
+ subject: 
+   user: source.user | request.auth.token[user] | "unspecified"
+   groups: request.auth.token[groups]
+   properties:
+      iss: request.auth.token["iss"]
+---
+# Rule to send logentry instances to the fluentd handler
+apiVersion: "config.istio.io/v1alpha2"
+kind: rule
+metadata:
+  name: r1 
+  namespace: istio-system
+spec:
+  match: "true" # match for all requests
+  actions:
+   - handler: h1
+     instances:
+     - vvnewenforcer

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// config for panpolicyenforcer 
+package adapter.pansecurityadapter.config;
+
+import "gogoproto/gogo.proto";
+
+option go_package="config";
+
+// config for pansecurityadapter 
+message Params {
+    // Path of the file to save the information about runtime requests.
+    string file_path = 1;
+	// GCP Project ID for the purpose of sending logs to stackdriver.
+	string project_id = 2;
+	// Log prefix to attach to all log entries
+	string log_prefix = 3;
+}
