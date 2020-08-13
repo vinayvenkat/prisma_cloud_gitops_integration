@@ -1,6 +1,7 @@
 FROM alpine:3.8
 RUN apk --no-cache add ca-certificates
-RUN echo "$PWD && ls"
+RUN echo "$PWD"
+RUN ls
 WORKDIR /bin/
 COPY bin/pansecadapter .
 WORKDIR /home/
