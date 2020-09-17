@@ -10,7 +10,8 @@ env:
   TL_PASS: ${{ secrets.TL_PASS }}
   # The base URL for the Console -- http://console.<my_company>.com:8083 -- without a trailing /
   TL_CONSOLE_URL:  https://us-west1.cloud.twistlock.com/us-3-159237940
-  CONTAINER_IMAGE: sgordon/latest:${{ github.sha }}
+  #CONTAINER_IMAGE: sgordon/latest:${{ github.sha }}
+  CONTAINER_IMAGE: vinayvenkat/pcscan-latest:${{ github.sha }}
 
 jobs:
   build-and-scan:
