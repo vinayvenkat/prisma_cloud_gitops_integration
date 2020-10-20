@@ -43,5 +43,16 @@ jobs:
         # Add --vulnerability-threshold and/or --compliance-threshold to this command to
         # fail builds based on the thresholds.
         # See twistcli documentation for more details.
-  
+  send_slack_notification:
+    name: slack_updater
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Slack Notification
+        uses: 8398a7/action-slack@v3
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFICATION_WEBHOOK }}
+        with:
+          status: ${{ job.status }}
+          fields: repo,workflow  
   # add any additional jobs/steps needed to test the image, push to a registry, etc.
