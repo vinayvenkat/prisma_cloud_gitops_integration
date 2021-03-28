@@ -7,6 +7,7 @@ COPY ./license.txt /home
 WORKDIR /bin/
 RUN ls
 #COPY bin/pansecadapter .
+#COPY bin/pansecadapter .
 WORKDIR /home/
 #COPY pansecurityadapter/license.txt . 
 RUN ls
