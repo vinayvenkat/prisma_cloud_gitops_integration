@@ -11,6 +11,7 @@ RUN ls
 WORKDIR /home/
 #COPY pansecurityadapter/license.txt . 
 RUN ls
+RUN ls -l
 ENTRYPOINT [ "/bin/pansecadapter" ]
 CMD [ "9693" ]
 EXPOSE 9693 
